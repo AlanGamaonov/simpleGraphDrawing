@@ -36,7 +36,7 @@ function DrawGraph(pathToFile)
         D = diag(sum(A));
         K = D - A;
         [v, e] = eigs(K, length(A));
-        e = round(e);
+        e = round(e, 10);
         
         min = realmax;
         ri = 0; rj = 0;
