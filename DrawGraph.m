@@ -35,34 +35,10 @@ function DrawGraph(pathToFile)
     function draw(A)
         D = diag(sum(A));
         K = D - A;
-        [v, e] = eigs(K, length(A));
-        e = round(e, 10);
-        
-        min = realmax;
-        ri = 0; rj = 0;
-        for i=1:length(e)
-            for j=1:length(e)
-                if (i ~= j & e(i, i) * e(j, j) ~= 0)
-                    XY = v(:, [i j]);
-                    s = 0;
-                    for fv=1:length(XY)
-                        for sv=1:length(XY)
-                            if (fv ~= sv & A(fv, sv) ~= 0)
-                                s = s + (XY(fv,1) - XY(sv,1))^2 + (XY(fv,2) - XY(sv,2))^2;
-                            end
-                        end
-                    end
-                    if (s < min)
-                        min = s;
-                        ri = i; rj = j;
-                    end
-                end
-            end
-        end
-        
-        gplot(A, v(:, [ri rj]))
+        [v, ~] = eigs(K, 3, 'sm');
+        gplot(A, v(:, [2 3]))
         hold on
-        gplot(A, v(:, [ri rj]), 'o')
+        gplot(A, v(:, [2 9]), 'o')
     end
 
 end
