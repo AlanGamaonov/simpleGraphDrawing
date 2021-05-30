@@ -38,7 +38,7 @@ function DrawGraph(pathToFile)
         [v, ~] = eigs(K, 3, 'sm');
         gplot(A, v(:, [2 3]))
         hold on
-        gplot(A, v(:, [2 9]), 'o')
+        gplot(A, v(:, [2 3]), 'o')
     end
 
 end
